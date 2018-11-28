@@ -6,6 +6,7 @@ header.masthead {
   background-color: $gray-600;
   background-attachment: scroll;
   position: relative;
+  // height: 80vh;
   @include background-cover;
   .overlay {
     position: absolute;
