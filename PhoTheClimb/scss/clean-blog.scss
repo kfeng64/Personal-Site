@@ -7,3 +7,31 @@
 @import "contact.scss";
 @import "footer.scss";
 @import "bootstrap-overrides.scss";
+
+
+
+// Home page filters
+
+.filter-options {
+
+}
+
+.filter-text {
+    font-size: 16px;
+    margin: .5em 0;
+}
+
+.filter {
+
+    // @include button-variant($white,$gray-900,$gray-900);
+    font-size: 16px;
+    color: $gray-600;
+    align-content: center;
+    text-align: center;
+    margin: 0 1em;
+    cursor: pointer;
+
+    &:hover {
+        color: $gray-900;
+    }
+}
