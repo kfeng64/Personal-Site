@@ -42,7 +42,7 @@
                         <a class="nav-link" href="about.html">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="post.html">Locations</a>
+                        <a class="nav-link" href="locations.html">Locations</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Suggest a Place</a>
@@ -101,7 +101,7 @@
 
                 <!-- Blog Posts -->
 
-                <div class="pho">
+                <div class="pho blogPost">
 
                     <div class="post-preview">
                         <a href="pho88Review.html">
@@ -121,7 +121,7 @@
 
                 </div>
 
-                <div class='climbing'>
+                <div class='climbing blogPost'>
 
                     <div class="post-preview">
                         <a href="northWestBranch.html">
@@ -141,7 +141,7 @@
 
                 </div>
 
-                <div class='pho'>
+                <div class='pho blogPost'>
 
                     <div class="post-preview">
                         <a href="phoThomReview.html">
@@ -161,7 +161,7 @@
 
                 </div>
 
-                <div class='climbing'>
+                <div class='climbing blogPost'>
                     <div class="post-preview">
                         <a href="loyolaComp.html">
                             <h2 class="post-title">
@@ -240,8 +240,7 @@
 
                     <script type="text/javascript">
 
-
-
+                        var blogPosts = document.getElementsByClassName('blogPost')
                         var phoPosts = document.getElementsByClassName('pho');
                         var climbingPosts = document.getElementsByClassName('climbing');
 
@@ -254,46 +253,28 @@
                         document.onload = showAll();
 
                         function showAll() {
-                            allFilter.style.color = "#212529";
-                            phoFilter.style.color = "#868e96";
-                            climbingFilter.style.color = "#868e96";
+                            $('.filter').css("color", "#868e96");
+                            $('#allFilter').css("color", "#212529");
 
-                            for (var i = 0; i < phoPosts.length; i++) {
-                                phoPosts[i].style.display = "block";
-                            }
-
-                            for (var i = 0; i < climbingPosts.length; i++) {
-                                climbingPosts[i].style.display = "block";
-                            }
+                            $('.blogPost').removeClass("hidden")
 
                         }
 
                         function showPho() {
-                            phoFilter.style.color = "#212529";
-                            allFilter.style.color = "#868e96";
-                            climbingFilter.style.color = "#868e96";
+                            $('.filter').css("color", "#868e96");
+                            $('#phoFilter').css("color", "#212529");
 
-                            for (var i = 0; i < phoPosts.length; i++) {
-                                phoPosts[i].style.display = "block";
-                            }
-
-                            for (var i = 0; i < climbingPosts.length; i++) {
-                                climbingPosts[i].style.display = "none";
-                            }
+                            $('.blogPost').addClass("hidden")
+                            $('.pho').removeClass("hidden")
                         }
 
                         function showClimbing() {
-                            climbingFilter.style.color = "#212529";
-                            phoFilter.style.color = "#868e96";
-                            allFilter.style.color = "#868e96";
+                            $('.filter').css("color", "#868e96");
+                            $('#climbingFilter').css("color", "#212529");
 
-                            for (var i = 0; i < phoPosts.length; i++) {
-                                phoPosts[i].style.display = "none";
-                            }
+                            $('.blogPost').addClass("hidden")
+                            $('.climbing').removeClass("hidden")
 
-                            for (var i = 0; i < climbingPosts.length; i++) {
-                                climbingPosts[i].style.display = "block";
-                            }
                         }
 
 

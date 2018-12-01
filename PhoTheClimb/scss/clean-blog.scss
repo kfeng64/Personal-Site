@@ -16,6 +16,22 @@
 
 }
 
+.blogPost {
+    // -webkit-transition: all 0.2s;
+    // -moz-transition: all 0.2s;
+    // transition-delay: all 0.4s;
+    transition: all .6s;
+    height: auto;
+    opacity: 1;
+}
+
+.hidden {
+    // transition-delay: opacity 0.4s;
+    transition: all .6s;
+    height: 0;
+    opacity: 0;
+}
+
 .filter-text {
     font-size: 16px;
     margin: .5em 0;
