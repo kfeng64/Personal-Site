@@ -19,7 +19,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
-    <link href="css/clean-blog.min.css" rel="stylesheet">
+    <link href="css/clean-blog.css" rel="stylesheet">
 
 </head>
 
@@ -42,7 +42,7 @@
                         <a class="nav-link" href="about.html">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="post.html">Locations</a>
+                        <a class="nav-link" href="locations.html">Locations</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Suggest a Place</a>
@@ -53,13 +53,13 @@
     </nav>
 
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('img/about-bg.jpg')">
+    <header class="masthead" style="background-image: url('img/locations.jpg')">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="page-heading">
-                        <h1>About Us</h1>
+                        <h1>Locations</h1>
                     </div>
                 </div>
             </div>
@@ -69,10 +69,207 @@
     <!-- Main Content -->
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur magnam, excepturi aliquid ex itaque esse est vero natus quae optio aperiam soluta voluptatibus corporis atque iste neque sit tempora!</p>
+            <div class="col-lg-8 col-md-10 mx-auto gmap">
+
+                <div class='row'>
+                    <h2 class="section-heading">Places we've visited so far</h2>
+
+                    <div class='col-6'>
+                        <h2 class="section-heading">Pho</h2>
+
+                        <div class="place" onclick="zoomPhoThom()">
+                            Pho Thom
+                        </div>
+                        <div class="place" onclick="zoomPho88()">
+                            Pho 88 Beltsville
+                        </div>
+
+
+                    </div>
+                    <div class='col-6'>
+                        <h2 class="section-heading">Climbing</h2>
+                        <div class="place" onclick="zoomNWB()">
+                            North West Branch
+                        </div>
+                        <div class="place" onclick="zoomTheAscent()">
+                            The Ascent: Loyola
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+
+                <div id="map">
+                </div>
+
+
+
+            	<script type="text/javascript">
+                    var map;
+
+                    var phoThom = document.getElementById('phoThom');
+
+                    var phoThom = {
+                        info: '<strong>Pho Thom</strong><br>\
+            					7313 Baltimore Ave F, College Park, MD 20740<br>\
+            					<a href="https://goo.gl/maps/4mH2LtEtff12">Get Directions</a>',
+                		lat: 38.980021,
+                		long: -76.937719
+                    }
+
+
+
+                    var pho88 = {
+                        info: '<strong>Pho 88</strong><br>\
+            					10478 Baltimore Ave, Beltsville, MD 20705<br>\
+            					<a href="https://goo.gl/maps/MvaR5PbLZ4r">Get Directions</a>',
+                		lat: 39.028615,
+                		long: -76.917839
+                    }
+
+                    var theAscent = {
+                        info: '<strong>The Ascent: Loyola</strong><br>\
+            					4900 N Charles St, Baltimore, MD 21210<br>\
+            					<a href="https://goo.gl/maps/g3nLnvNo1Gr">Get Directions</a>',
+                		lat: 39.352568,
+                		long: -76.624660
+                    }
+
+                    var northWestBranch = {
+                        info: '<strong>North West Branch</strong><br>\
+            					Northwest Branch Trail, Silver Spring, MD 20903<br>\
+            					<a href="https://goo.gl/maps/ZezbENm87Tz">Get Directions</a>',
+                		lat: 39.03,
+                		long: -77.004
+                    }
+
+                    var locations = [
+                        [phoThom.info, phoThom.lat, phoThom.long],
+                        [pho88.info, pho88.lat, pho88.long],
+                        [theAscent.info, theAscent.lat, theAscent.long],
+                        [northWestBranch.info, northWestBranch.lat, northWestBranch.long],
+                    ];
+
+                    var infowindow;
+
+                    function initMap() {
+                    	map = new google.maps.Map(document.getElementById('map'), {
+                    		center: {
+                                lat: 38.99,
+                    			lng: -76.94
+                    		},
+                    		zoom: 10,
+                            // gestureHandling: 'greedy'
+                    	});
+
+                        infowindow = new google.maps.InfoWindow({});
+
+                        for (i = 0; i < locations.length; i++) {
+                    		marker = new google.maps.Marker({
+                    			position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                    			map: map
+                    		});
+
+                            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                        		return function () {
+                                    infowindow.close();
+                        			infowindow.setContent(locations[i][0]);
+                        			infowindow.open(map, marker);
+                        		}
+                        	})(marker, i));
+                        }
+                    }
+
+                    function zoomPhoThom() {
+                        let position = new google.maps.LatLng(phoThom.lat,phoThom.long);
+                        map.setCenter(position);
+                        map.setZoom(15);
+
+                        marker = new google.maps.Marker({
+                            position: position,
+                            map: map
+                        });
+
+                        infowindow.setContent(phoThom.info);
+                        infowindow.open(map, marker);
+
+                        google.maps.event.addListener(marker, 'click', (function (marker) {
+                            return function () {
+                                infowindow.setContent(phoThom.info);
+                                infowindow.open(map, marker);
+                            }
+                        })(marker));
+                    }
+
+                    function zoomPho88() {
+                        let position = new google.maps.LatLng(pho88.lat,pho88.long);
+                        map.setCenter(position);
+                        map.setZoom(15);
+
+                        marker = new google.maps.Marker({
+                            position: position,
+                            map: map
+                        });
+
+                        infowindow.setContent(pho88.info);
+                        infowindow.open(map, marker);
+
+                        google.maps.event.addListener(marker, 'click', (function (marker) {
+                            return function () {
+                                infowindow.setContent(pho88.info);
+                                infowindow.open(map, marker);
+                            }
+                        })(marker));
+                    }
+
+                    function zoomTheAscent() {
+                        let position = new google.maps.LatLng(theAscent.lat,theAscent.long);
+                        map.setCenter(position);
+                        map.setZoom(15);
+
+                        marker = new google.maps.Marker({
+                            position: position,
+                            map: map
+                        });
+
+                        infowindow.setContent(theAscent.info);
+                        infowindow.open(map, marker);
+
+                        google.maps.event.addListener(marker, 'click', (function (marker) {
+                            return function () {
+                                infowindow.setContent(theAscent.info);
+                                infowindow.open(map, marker);
+                            }
+                        })(marker));
+                    }
+
+                    function zoomNWB() {
+                        let position = new google.maps.LatLng(northWestBranch.lat,northWestBranch.long);
+                        map.setCenter(position);
+                        map.setZoom(15);
+
+                        marker = new google.maps.Marker({
+                            position: position,
+                            map: map
+                        });
+
+                        infowindow.setContent(northWestBranch.info);
+                        infowindow.open(map, marker);
+
+                        google.maps.event.addListener(marker, 'click', (function (marker) {
+                            return function () {
+                                infowindow.setContent(northWestBranch.info);
+                                infowindow.open(map, marker);
+                            }
+                        })(marker));
+                    }
+
+
+                </script>
+
+                <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnfKlArsX_GCscRWzmrPJC7cY4xBUE-E4&callback=initMap"></script>
+
+
             </div>
         </div>
     </div>

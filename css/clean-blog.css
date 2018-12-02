@@ -466,3 +466,17 @@ footer .copyright {
 .filter:hover {
   color: #212529;
 }
+
+.gmap {
+  height: auto;
+  margin-bottom: 1em;
+}
+
+#map {
+  height: 75vh;
+}
+
+.place {
+  cursor: pointer;
+  text-decoration: underline;
+}

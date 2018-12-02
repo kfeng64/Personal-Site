@@ -12,10 +12,6 @@
 
 // Home page filters
 
-.filter-options {
-
-}
-
 .blogPost {
     // -webkit-transition: all 0.2s;
     // -moz-transition: all 0.2s;
@@ -38,7 +34,6 @@
 }
 
 .filter {
-
     // @include button-variant($white,$gray-900,$gray-900);
     font-size: 16px;
     color: $gray-600;
@@ -50,4 +45,20 @@
     &:hover {
         color: $gray-900;
     }
+}
+
+//Google Maps
+
+.gmap {
+    height: auto;
+    margin-bottom: 1em;
+}
+
+#map {
+    height: 75vh;
+}
+
+.place {
+    cursor: pointer;
+    text-decoration: underline;
 }
