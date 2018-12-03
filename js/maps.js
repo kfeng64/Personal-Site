@@ -45,7 +45,7 @@ var locations = [
     [northWestBranch.info, northWestBranch.lat, northWestBranch.long],
 ];
 
-var infowindow;
+var infowindow = new google.maps.InfoWindow({});;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -57,10 +57,8 @@ function initMap() {
         gestureHandling: 'greedy'
     });
 
-    infowindow = new google.maps.InfoWindow({});
-
-    for (i = 0; i < locations.length; i++) {
-        marker = new google.maps.Marker({
+    for (let i = 0; i < locations.length; i++) {
+        let marker = new google.maps.Marker({
             position: new google.maps.LatLng(locations[i][1], locations[i][2]),
             map: map
         });
@@ -80,7 +78,7 @@ function zoomPhoThom() {
     map.setCenter(position);
     map.setZoom(15);
 
-    marker = new google.maps.Marker({
+    let marker = new google.maps.Marker({
         position: position,
         map: map
     });
@@ -101,7 +99,7 @@ function zoomPho88() {
     map.setCenter(position);
     map.setZoom(15);
 
-    marker = new google.maps.Marker({
+    let marker = new google.maps.Marker({
         position: position,
         map: map
     });
@@ -122,7 +120,7 @@ function zoomTheAscent() {
     map.setCenter(position);
     map.setZoom(15);
 
-    marker = new google.maps.Marker({
+    let marker = new google.maps.Marker({
         position: position,
         map: map
     });
@@ -143,7 +141,7 @@ function zoomNWB() {
     map.setCenter(position);
     map.setZoom(15);
 
-    marker = new google.maps.Marker({
+    let marker = new google.maps.Marker({
         position: position,
         map: map
     });
