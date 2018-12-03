@@ -45,7 +45,7 @@ var locations = [
     [northWestBranch.info, northWestBranch.lat, northWestBranch.long],
 ];
 
-var infowindow = new google.maps.InfoWindow({});;
+var infowindow;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -56,6 +56,8 @@ function initMap() {
         zoom: 10,
         gestureHandling: 'greedy'
     });
+
+    infowindow = new google.maps.InfoWindow({});
 
     for (let i = 0; i < locations.length; i++) {
         let marker = new google.maps.Marker({
